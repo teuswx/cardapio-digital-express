@@ -1,8 +1,33 @@
+import { Orders } from "./components/orders";
+import {api} from '@/services/api'
+import { getCookieServer  } from "@/lib/cookieServer";
+import { OrderProps } from "@/lib/order.type";
 
-export default function Dashboard(){
+async function getOrders(): Promise<OrderProps[] | []>{
+
+    const token = await getCookieServer();
+
+    try{
+        const response = await api.get("/orders", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        return response.data || []
+    }catch(err){
+        console.log(err)
+        return []
+    }
+}
+export default async function Dashboard(){
+
+    const orders = await getOrders();
+
+    
     return(
-        <div>
-            Página painel
-        </div>
+        <>
+            <Orders orders={orders}/>
+        </>
     )
 }
