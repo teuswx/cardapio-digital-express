@@ -4,10 +4,15 @@ import cors from 'cors';
 import path from 'path';
 
 import {router} from "./routes"; // importando as rotas
-
+import fileUpload from "express-fileupload"
+ 
 const app  = express(); // inicializando o express
+
 app.use(express.json()); // falando para o express que o tipo de dados que vamos usar é o json
 app.use(cors());
+app.use(fileUpload({
+    limits: {fileSize: 50 * 1024 * 1024} // no máximo 50mb
+}))
 app.use(router); // falando para aplicação usar as rotas do router
 
 app.use(

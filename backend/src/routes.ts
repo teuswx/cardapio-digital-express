@@ -39,7 +39,8 @@ router.get('/category', isAuthenticated, new ListCategoryController().handle)
 
 //-- ROTAS PRODUCT --
 
-router.post('/product', isAuthenticated, upload.single('file'), new CreateProductController().handle) // tem uqe passar file ao inves de banner no corpo da requisicao
+// router.post('/product', isAuthenticated, upload.single('file'), new CreateProductController().handle) // tem uqe passar file ao inves de banner no corpo da requisicao
+router.post('/product', isAuthenticated, new CreateProductController().handle) // tem uqe passar file ao inves de banner no corpo da requisicao
 router.get('/category/product', isAuthenticated, new ListybyCategoryController().handle)
 
 //-- ROTAS ORDER --
