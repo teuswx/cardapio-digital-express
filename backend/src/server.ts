@@ -33,6 +33,6 @@ app.use((err:Error, req: Request, res: Response, next: NextFunction)=>{
     })
 })
 
-app.listen(3333, ()=>{  //inciializando  e escolhendo a porta em que vai rodar o servidor e passando uma função de callback
+app.listen(process.env.PORT, ()=>{  //inciializando  e escolhendo a porta em que vai rodar o servidor e passando uma função de callback
     console.log('Servidor Online!')
 })
